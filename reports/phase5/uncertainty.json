@@ -1,0 +1,86 @@
+{
+  "interpretation": "Descriptive resampling uncertainty only; fixed source-order subset and automatic associations limit population-level claims.",
+  "method": "Percentile bootstrap over query rows; 5000 replicates; seed 4205.",
+  "results": [
+    {
+      "MRR@10": 0.5974654377880184,
+      "MRR@10 95% bootstrap CI": [
+        0.5299047139016897,
+        0.6641340245775729
+      ],
+      "Recall@10": 0.8763440860215054,
+      "Recall@10 95% bootstrap CI": [
+        0.8145161290322581,
+        0.9274193548387096
+      ],
+      "mean latency 95% bootstrap CI ms": [
+        3.852059163107187,
+        7.005838264318767
+      ],
+      "mean latency ms": 5.030669967748824,
+      "measured p95 latency ms": 10.698833000105878,
+      "mode": "bm25",
+      "queries": 124
+    },
+    {
+      "MRR@10": 0.034037378392217106,
+      "MRR@10 95% bootstrap CI": [
+        0.014996159754224268,
+        0.05817676331285202
+      ],
+      "Recall@10": 0.10887096774193548,
+      "Recall@10 95% bootstrap CI": [
+        0.056451612903225805,
+        0.16532258064516128
+      ],
+      "mean latency 95% bootstrap CI ms": [
+        13.427447852011703,
+        14.386668182458992
+      ],
+      "mean latency ms": 13.87268797580807,
+      "measured p95 latency ms": 20.4496180000433,
+      "mode": "pretrained_codebert",
+      "queries": 124
+    },
+    {
+      "MRR@10": 0.6723502304147465,
+      "MRR@10 95% bootstrap CI": [
+        0.6026324884792627,
+        0.7396618183563748
+      ],
+      "Recall@10": 0.9354838709677419,
+      "Recall@10 95% bootstrap CI": [
+        0.8870967741935484,
+        0.9758064516129032
+      ],
+      "mean latency 95% bootstrap CI ms": [
+        10.958617013509095,
+        11.933582478218867
+      ],
+      "mean latency ms": 11.437505669352188,
+      "measured p95 latency ms": 16.26992799992877,
+      "mode": "fine_tuned_codebert",
+      "queries": 124
+    },
+    {
+      "MRR@10": 0.7547331029185868,
+      "MRR@10 95% bootstrap CI": [
+        0.6946788594470045,
+        0.8120612519201228
+      ],
+      "Recall@10": 0.9408602150537635,
+      "Recall@10 95% bootstrap CI": [
+        0.8951612903225806,
+        0.9758064516129032
+      ],
+      "mean latency 95% bootstrap CI ms": [
+        16.071554529836778,
+        19.513721664309095
+      ],
+      "mean latency ms": 17.432507822585496,
+      "measured p95 latency ms": 26.058374999820444,
+      "mode": "hybrid",
+      "queries": 124
+    }
+  ]
+}

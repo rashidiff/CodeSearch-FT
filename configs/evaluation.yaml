@@ -1,0 +1,19 @@
+profile: evaluation
+candidate_corpus: artifacts/evaluation/codesearchnet-test-v1/candidates.jsonl
+queries: artifacts/evaluation/codesearchnet-test-v1/queries.jsonl
+output_dir: artifacts/evaluation/codesearchnet-test-v1/run
+dataset_id: code-search-net/code_search_net
+dataset_revision: bd0cf261e357a3eb5c8fba490d23ec1a1cd59555
+dataset_config: python
+model_revision: 3b0952feddeffad0063f274080e3c23d75e7eb39
+fine_tuned_checkpoint: artifacts/evaluation/fine-tuned-codebert
+candidate_limit: 128
+query_limit: 128
+top_k: 10
+random_seed: 42
+modes:
+  - bm25
+  - pretrained_codebert
+  - fine_tuned_codebert
+  - hybrid
+rrf_constant: 60

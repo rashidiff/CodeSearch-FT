@@ -1,0 +1,97 @@
+[project]
+name = "codesearch-ft"
+version = "0.1.0"
+description = "A reproducible local semantic search engine for Python code."
+readme = "README.md"
+requires-python = ">=3.11,<3.14"
+license = "MIT"
+authors = [{ name = "CodeSearch-FT contributors" }]
+dependencies = [
+  "fastapi>=0.115,<1",
+  "pydantic>=2.9,<3",
+  "PyYAML>=6.0,<7",
+  "typer>=0.15,<1",
+  "uvicorn>=0.34,<1",
+]
+
+[project.optional-dependencies]
+inference = [
+  "faiss-cpu>=1.9,<2",
+  "torch>=2.6,<3",
+  "transformers>=4.48,<6",
+]
+
+[project.scripts]
+codesearch = "codesearch_ft.cli.app:app"
+
+[dependency-groups]
+training = [
+  "accelerate>=1.2,<2",
+  "datasets>=3.2,<5",
+  "mlflow>=2.19,<4",
+]
+dev = [
+  "build>=1.2,<2",
+  "httpx2>=2,<3",
+  "pyright>=1.1.390,<2",
+  "pytest>=8.3,<9",
+  "pytest-cov>=6,<7",
+  "ruff>=0.9,<1",
+]
+
+[build-system]
+requires = ["setuptools>=77,<85"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = [
+  "-ra",
+  "--strict-markers",
+  "--cov=codesearch_ft",
+  "--cov-report=term-missing",
+  "--cov-fail-under=80",
+]
+
+[tool.coverage.run]
+branch = true
+source = ["codesearch_ft"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+exclude_lines = [
+  "pragma: no cover",
+  "if TYPE_CHECKING:",
+  "if __name__ == .__main__.:",
+]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests"]
+target-version = "py311"
+force-exclude = true
+extend-exclude = [".uv-cache*", ".venv*", ".test-tmp", ".phase6-tmp"]
+
+[tool.ruff.lint]
+select = ["B", "E", "F", "I", "SIM", "UP"]
+
+[tool.ruff.format]
+quote-style = "double"
+indent-style = "space"
+
+[tool.pyright]
+include = ["src", "tests"]
+exclude = [".venv", ".uv-cache", "**/__pycache__"]
+pythonVersion = "3.11"
+typeCheckingMode = "strict"
+reportMissingTypeStubs = false
+venvPath = "."
+venv = ".venv"
+
+[tool.uv]
+package = true
+default-groups = ["dev"]

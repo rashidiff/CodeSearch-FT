@@ -1,0 +1,36 @@
+# Python environments and generated files
+.venv/
+.venv*/
+.uv-cache/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.pyright/
+.coverage
+htmlcov/
+dist/
+build/
+*.egg-info/
+
+# Local datasets, model caches/checkpoints, databases, and vector indexes
+.codesearch/
+data/raw/
+data/cache/
+artifacts/
+checkpoints/
+mlruns/
+*.sqlite
+*.sqlite3
+*.db
+*.faiss
+*.index
+
+# Local environment secrets
+.env
+.env.*
+!.env.example
+
+# Temporary test output
+.test-tmp/
+.phase6-tmp/

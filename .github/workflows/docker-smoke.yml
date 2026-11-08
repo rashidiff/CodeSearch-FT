@@ -1,0 +1,35 @@
+name: Docker smoke
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  docker-smoke:
+    name: CPU container build and API smoke
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build CPU image
+        run: docker build --tag codesearch-ft:ci .
+      - name: Verify health and indexed search
+        shell: bash
+        run: |
+          set -euo pipefail
+          docker run --detach --rm --name codesearch-ft-ci \
+            --publish 127.0.0.1:18000:8000 \
+            --volume codesearch-ft-ci-data:/var/lib/codesearch \
+            codesearch-ft:ci
+          cleanup() { docker stop codesearch-ft-ci >/dev/null 2>&1 || true; }
+          trap cleanup EXIT
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:18000/health >/dev/null; then break; fi
+            sleep 2
+          done
+          curl --fail --silent http://127.0.0.1:18000/health
+          docker exec codesearch-ft-ci mkdir -p /tmp/codesearch-fixture
+          docker cp tests/fixtures/docker_sample.py codesearch-ft-ci:/tmp/codesearch-fixture/docker_sample.py
+          docker exec codesearch-ft-ci codesearch index /tmp/codesearch-fixture --database /var/lib/codesearch/metadata.sqlite3
+          curl --fail --silent --show-error -X POST http://127.0.0.1:18000/v1/search -H 'Content-Type: application/json' -d '{"query":"remove duplicates preserving first occurrence order","mode":"lexical","top_k":10}' | grep --quiet normalize_values_preserving_order

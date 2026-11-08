@@ -1,0 +1,76 @@
+{
+  "archive_member_count": 18,
+  "checks": {
+    "all_four_modes_identical_candidate_pool": "passed",
+    "bootstrap_intervals_recomputed_exactly": "passed",
+    "candidate_query_file_hashes": "passed",
+    "checkpoint_weight_and_metadata_hashes_match_local_verified_export": "passed",
+    "csv_consistent_with_raw_json": "passed",
+    "dataset_id_revision_test_split": "passed",
+    "deployment_wheel_manifest_matches_local_current_colab_bundle": "passed",
+    "fixed_set_and_partition_manifest_hashes": "passed",
+    "query_associations_traceable_to_candidate_ids": "passed",
+    "raw_mrr_recall_recomputed_from_rankings": "passed",
+    "retrieval_index_hashes_match_report": "passed"
+  },
+  "evaluation_scope": {
+    "candidates": 128,
+    "cross_split_duplicate_groups_in_benchmark_manifest": 0,
+    "labels": "automatic CodeSearchNet documentation-to-function associations, not human judgments",
+    "manifest_train_rows_checked": 128,
+    "queries": 124
+  },
+  "extracted_member_sha256": {
+    "benchmark.log": "7b4832c17046caf93772fa9353a21fd1149d148415cdaa217c2a08de72e339f9",
+    "deployment-manifest.json": "6bb1e71e48152daf62c2fba82f8246fb6e9170d9b28a3c15c80a68153961f8b0",
+    "evaluation-config.yaml": "7fe251755ab2d250917c60f6484a90f7f5179aae2636a94af6fef3d426897bba",
+    "fixed/candidates.jsonl": "54ce42aabc9bc0006efae3d9801e263f9f76eb43497e8b3d6080ad8f80db5efb",
+    "fixed/dataset-manifest.json": "bc1f08e4a87fdf6e6053f02e4ef8c3dc6b3812b141bf47cb6c447b61845643ee",
+    "fixed/queries.jsonl": "633849598ef8f2695e55fe291091634ea619aea9816fb59eb1236c7e25b34bb5",
+    "outputs/benchmark.csv": "e65b07eb3b330d63b801ae736e7e0611b612579161ed726bd40c07afe28060e5",
+    "outputs/benchmark.json": "1a63653f7303294a7c3f712758a26b30b65adfcde13d9ad2f664f1f4bd9f67b9",
+    "outputs/benchmark.md": "4cd56fe0f81250e67a10bdeb3f1b36b78421eb6b75b32d27606a1ab1ac7d436e",
+    "outputs/indexes/bm25.sqlite3": "4f8d2c63a25fbd5d9b452152a23db57afa242a2fba814329480bb92e8062793e",
+    "outputs/indexes/fine-tuned-codebert.faiss": "230d482296a51cb23facde86eb05a5131752410e3a0e83116aca29840a837557",
+    "outputs/indexes/pretrained-codebert.faiss": "dbf4a5e3c12f4eb2d21bae00b760ca9682d03e6136d477816fd9bf0e802abfd0",
+    "outputs/metrics.svg": "54c6390f561e6657efb584166824db11f23e7b903a3399b20b637f1f9f808415",
+    "outputs/uncertainty.json": "182237e093a9f541fa4266e088f04b818f653c5bb337b1a53eb4e0c32c1c2513",
+    "runtime-environment.json": "9e0d05436981f1323170630835ba554856e2d12ed301076cca3732ddc983574f"
+  },
+  "paired_pretrained_vs_finetuned_diagnostic": {
+    "mrr": {
+      "mean_fine_tuned_minus_pretrained": 0.6383128520225294,
+      "paired_bootstrap_95_ci": [
+        0.5677317748335895,
+        0.7066733070916539
+      ],
+      "replicates": 10000,
+      "seed": 5931,
+      "win_tie_loss": [
+        113,
+        9,
+        2
+      ]
+    },
+    "recall": {
+      "mean_fine_tuned_minus_pretrained": 0.8266129032258065,
+      "paired_bootstrap_95_ci": [
+        0.7580645161290323,
+        0.8911290322580645
+      ],
+      "replicates": 10000,
+      "seed": 5931,
+      "win_tie_loss": [
+        103,
+        21,
+        0
+      ]
+    }
+  },
+  "raw_measurements_modified": false,
+  "remaining_caveat": "The result archive has the evaluation partition manifest, while the checkpoint records only the hash of its training dataset manifest. A local attempt to reconstruct the checkpoint manifest from pinned Hugging Face Parquet data could not resolve DNS. The evaluation manifest therefore verifies zero exact cross-split groups among its 128 sampled train/validation/test rows, but this local audit could not independently intersect all 2,000 fine-tuning training rows with the held-out candidates.",
+  "source_archive_bytes": 978593,
+  "source_archive_sha256": "b7ddd8de96a84984b7931a06c4356c2a25b88aafb69664d0e1aa2d059eb572e7",
+  "verification_timestamp_utc": "2026-11-08T12:21:38.265834+00:00",
+  "zip_integrity": "passed"
+}
